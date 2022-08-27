@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="float-right">
+    <h3>Welcome {{ user.username }}!</h3>
+    <a href="{% url 'logout' %}">Logout?</a>
+</div>
+
+<div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Poll Questions</h3>
+            </div>
+            {% for p in polls %}  
+            <div class="panel-body">
+                <h3>{{ p.question }}</h3>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">  <strong><a href="{% url 'votepoll' p.id %}" class="btn btn-primary">Vote Now</a>
+                    <a href="{% url 'result' p.id %}" class="btn btn-primary">Results</a></strong></li>
+               
+            </ul>
+            {% endfor %}
+        </div>
+          </div>
+{% else %}
+    <div class="">
+        <h3>Welcome!</h3>
+        <a href="{% url 'register' %}">Signup</a>
+        <a href="{% url 'login' %}">Login</a>
+    </div>
+{% endif %}
+{% endblock %}
+
+

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+{% if user.is_authenticated %}
+<div class="float-right">
+    <h3>Welcome {{ user.username }}!</h3>
+    <a href="{% url 'logout' %}">Logout?</a>
+</div>
+
+
+
+{% endif %}
+{% endblock %}
+
+
